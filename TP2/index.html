@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Class</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='./main.css'>
+</head>
+
+<script>
+
+    // class Cursor{
+    //     constructor(arriba,abajo,izquierda,derecha){
+    //         this.arriba = arriba,
+    //         this.abajo = abajo,
+    //         this.izquierda = izquierda,
+    //         this.derecha = derecha
+    //     }
+
+    //     sumarIquierda(){
+    //         this.izquierda++;
+    //     }
+
+    // }
+
+    // var cursorObj = new Cursor(0,0,0,0);
+    // cursorObj.sumarIquierda();
+    // console.log(cursorObj.izquierda);
+
+    class Operacion{
+        
+        constructor(numeros){
+            this.numeros = numeros;
+        }
+        
+        /* Realizar un método que englobe tanto el producto como 
+        la suma, utilizando solamente un foreach.
+        tipo (String) => "Suma" ó "Producto".
+        BONUS: Puede agregar las dos operaciones faltantes (Resta y División)
+        Condiciones : No se puede dividir por cero y el Divisor tiene que ser
+        mayor que el dividendo.*/
+
+        operar(tipo){
+            let suma = 0;
+            let producto = 1;
+            let resta = this.numeros[0] * 2;
+            let division = this.numeros[0] * this.numeros[0];
+            let aux = false;
+            let aux2 = false;
+            
+            this.numeros.forEach(numero => {
+                if(tipo === "Sumar"){
+                    suma += numero;
+                }else if(tipo === "Multiplicar"){
+                    producto *= numero;
+                }else if(tipo === "Restar"){
+                        resta = resta - numero;
+                }else if(tipo === "Dividir" && aux === false){
+                    if(numero === 0){
+                        division = "No se puede dividir en 0.";
+                        aux = true;
+                    }else if(aux2 === false){
+                        if((division/numero) < numero + 1){
+                            division /= numero;
+                            aux2 = true;
+                        }
+                    }else if(division < numero){
+                        division /= numero;
+                    }else{
+                        division = "El divisor debe ser mayor que el dividendo."
+                    }
+                }
+            })
+
+            switch(tipo){
+                case "Sumar":
+                    return suma;
+                case "Multiplicar":
+                    return producto;
+                case "Restar":
+                    return resta;
+                case "Dividir":
+                    return division;
+            }
+             
+        }
+    }
+
+    var ObjetoOp = new Operacion([3, 4, 0.4]);
+    console.log(ObjetoOp.numeros);
+    console.log("Suma: " + ObjetoOp.operar("Sumar"));
+    console.log("Producto: " + ObjetoOp.operar("Multiplicar"));
+    console.log("/// BONUS ///");
+    console.log("Resta: " + ObjetoOp.operar("Restar"));
+    console.log("Division: " + ObjetoOp.operar("Dividir"));
+
+
+</script>
+
+<body id="body">
+</body>
+
+</html>
