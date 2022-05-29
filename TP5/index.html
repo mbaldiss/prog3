@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="jquery-3.6.0.min.js" type="text/javascript"></script>   
     <style>
         * {
             margin: 0;
@@ -28,7 +29,7 @@
             padding: 10px;
         }
 
-        .black {
+        #black {
             background-color: rgba(0, 0, 0, 0.8);
             border: 1px solid rgba(0, 0, 0, 0.8);
             font-size: 30px;
@@ -37,7 +38,7 @@
             align-items: center;
         }
 
-        .white {
+        #white {
             background-color: rgba(255, 255, 255, 0.8);
             border: 1px solid rgba(0, 0, 0, 0.8);
             font-size: 30px;
@@ -45,83 +46,36 @@
             justify-content: center;
             align-items: center;
         }
+        .dashboard-hidden {
+            visibility: hidden;
+        }
     </style>
+    <script>
+        $(document).ready(function(){
+            for(let i = 2; i < 73; i++){
+                if(i % 2 == 0){
+                    $("#white").clone().appendTo(".dashboard");
+                }else{
+                    $("#black").clone().appendTo(".dashboard");
+                }
+                if(i % 9 == 0){
+                    i++;
+                }
+            }
+        });
+    </script>
 </head>
 <body>
+    
     <div class="container">
         <div class="dashboard">
-            <div class="black">🗼</div>
-            <div class="white">🐎</div>
-            <div class="black">🛡️</div>
-            <div class="white">👑</div>
-            <div class="black">👒</div>
-            <div class="white">🛡️</div>
-            <div class="black">🐎</div>
-            <div class="white">🗼</div>
 
-            <div class="white">⚔️</div>
-            <div class="black">⚔️</div>
-            <div class="white">⚔️</div>
-            <div class="black">⚔️</div>
-            <div class="white">⚔️</div>
-            <div class="black">⚔️</div>
-            <div class="white">⚔️</div>
-            <div class="black">⚔️</div>
-
-            <div class="black">&nbsp;</div>
-            <div class="white">&nbsp;</div>
-            <div class="black">&nbsp;</div>
-            <div class="white">&nbsp;</div>
-            <div class="black">&nbsp;</div>
-            <div class="white">&nbsp;</div>
-            <div class="black">&nbsp;</div>
-            <div class="white">&nbsp;</div>
-
-            <div class="white">&nbsp;</div>
-            <div class="black">&nbsp;</div>
-            <div class="white">&nbsp;</div>
-            <div class="black">&nbsp;</div>
-            <div class="white">&nbsp;</div>
-            <div class="black">&nbsp;</div>
-            <div class="white">&nbsp;</div>
-            <div class="black">&nbsp;</div>
-
-            <div class="black">&nbsp;</div>
-            <div class="white">&nbsp;</div>
-            <div class="black">&nbsp;</div>
-            <div class="white">&nbsp;</div>
-            <div class="black">&nbsp;</div>
-            <div class="white">&nbsp;</div>
-            <div class="black">&nbsp;</div>
-            <div class="white">&nbsp;</div>
-
-            <div class="white">&nbsp;</div>
-            <div class="black">&nbsp;</div>
-            <div class="white">&nbsp;</div>
-            <div class="black">&nbsp;</div>
-            <div class="white">&nbsp;</div>
-            <div class="black">&nbsp;</div>
-            <div class="white">&nbsp;</div>
-            <div class="black">&nbsp;</div>
-
-            <div class="black">⚔️</div>
-            <div class="white">⚔️</div>
-            <div class="black">⚔️</div>
-            <div class="white">⚔️</div>
-            <div class="black">⚔️</div>
-            <div class="white">⚔️</div>
-            <div class="black">⚔️</div>
-            <div class="white">⚔️</div>
-
-            <div class="white">🗼</div>
-            <div class="black">🐎</div>
-            <div class="white">🛡️</div>
-            <div class="black">👑</div>
-            <div class="white">👒</div>
-            <div class="black">🛡️</div>
-            <div class="white">🐎</div>
-            <div class="black">🗼</div>
+        </div>
+        <div class="dashboard-hidden">
+            <div id="white"></div>
+            <div id="black"></div>
         </div>
     </div>
+    
 </body>
 </html>
