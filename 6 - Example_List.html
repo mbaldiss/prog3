@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>AJAX</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<script>
+    $(document).ready(function () {
+        var dataResponse = null;
+        $("#get").click(function () {
+        fetch('http://190.114.205.24:8080/api/users/')
+        .then(response => response.json())
+        .then(data => {
+            dataResponse = data;
+            dataResponse.forEach(element => {
+                console.log(element.name+","+element.surname)
+                $("#list").append('<option value="'+element.id+'">'+element.name+","+element.surname+'</option>')
+            });
+        });
+
+        $("#list").change(function(){
+            const id_list = $("#list").val();
+            const elementList = dataResponse.filter(element => element.id == id_list);
+            // $("#elementDiv").append(JSON.stringify(elementList));
+            $("#name").val(elementList[0].name);
+            $("#surname").val(elementList[0].surname);
+            $("#email").val(elementList[0].email);
+        })
+    });
+});
+
+</script>
+
+<body id="body">
+    <div class="box">
+        <select id="list"></select>
+        <button name="boton" id="get">GET</button> <br>
+        <div id="elementDiv"></div>
+        <br>Name<br>
+        <input id="name">
+        <br>Surname<br>
+        <input id="surname">
+        <br>Email<br>
+        <input id="email">
+
+    </div>
+</body>
+
+
+
+</html>
